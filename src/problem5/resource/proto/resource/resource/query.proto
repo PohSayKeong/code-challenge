@@ -1,4 +1,5 @@
 syntax = "proto3";
+
 package resource.resource;
 
 import "amino/amino.proto";
@@ -6,25 +7,67 @@ import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "resource/resource/params.proto";
+import "resource/resource/farm.proto";
 
 option go_package = "resource/x/resource/types";
 
 // Query defines the gRPC querier service.
 service Query {
+  
   // Parameters queries the parameters of the module.
-  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/resource/resource/params";
+  
+  }
+  
+  // Queries a list of Farm items.
+  rpc Farm    (QueryGetFarmRequest) returns (QueryGetFarmResponse) {
+    option (google.api.http).get = "/resource/resource/farm/{id}";
+  
+  }
+  rpc FarmAll (QueryAllFarmRequest) returns (QueryAllFarmResponse) {
+    option (google.api.http).get = "/resource/resource/farm";
+  
+  }
+  
+  // Queries a list of FindAnimal items.
+  rpc FindAnimal (QueryFindAnimalRequest) returns (QueryFindAnimalResponse) {
+    option (google.api.http).get = "/resource/resource/find_animal/{animal}";
+  
   }
 }
-
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
 
 // QueryParamsResponse is response type for the Query/Params RPC method.
 message QueryParamsResponse {
+  
   // params holds all the parameters of this module.
-  Params params = 1 [
-    (gogoproto.nullable) = false,
-    (amino.dont_omitempty) = true
-  ];
+  Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
 }
+
+message QueryGetFarmRequest {
+  uint64 id = 1;
+}
+
+message QueryGetFarmResponse {
+  Farm Farm = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllFarmRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllFarmResponse {
+  repeated Farm                                   Farm       = 1 [(gogoproto.nullable) = false];
+           cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryFindAnimalRequest {
+  string animal = 1;
+}
+
+message QueryFindAnimalResponse {
+  Farm farm = 1;
+}
+

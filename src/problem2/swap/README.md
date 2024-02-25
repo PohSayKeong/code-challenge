@@ -11,3 +11,6 @@ npm run dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 Most of the changes I have made are in the `app/page.tsx` file. I have added a `Swap` page which is a simple form that allows the user to swap between two tokens.
+
+## Sample Screenshot
+![Screenshot](sample.png "Swap Page")

@@ -1,0 +1,11 @@
+syntax = "proto3";
+package resource.resource;
+
+option go_package = "resource/x/resource/types";
+
+message Farm {
+  uint64 id = 1;
+  string animal = 2; 
+  string plant = 3; 
+  string creator = 4;
+}

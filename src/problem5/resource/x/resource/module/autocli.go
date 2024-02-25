@@ -17,6 +17,24 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Use:       "params",
 					Short:     "Shows the parameters of the module",
 				},
+				{
+					RpcMethod: "FarmAll",
+					Use:       "list-farm",
+					Short:     "List all farm",
+				},
+				{
+					RpcMethod:      "Farm",
+					Use:            "show-farm [id]",
+					Short:          "Shows a farm by id",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}},
+				},
+				{
+					RpcMethod:      "FindAnimal",
+					Use:            "find-animal [animal]",
+					Short:          "Query find-animal",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "animal"}},
+				},
+
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},
@@ -27,6 +45,24 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				{
 					RpcMethod: "UpdateParams",
 					Skip:      true, // skipped because authority gated
+				},
+				{
+					RpcMethod:      "CreateFarm",
+					Use:            "create-farm [animal] [plant]",
+					Short:          "Create farm",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "animal"}, {ProtoField: "plant"}},
+				},
+				{
+					RpcMethod:      "UpdateFarm",
+					Use:            "update-farm [id] [animal] [plant]",
+					Short:          "Update farm",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}, {ProtoField: "animal"}, {ProtoField: "plant"}},
+				},
+				{
+					RpcMethod:      "DeleteFarm",
+					Use:            "delete-farm [id]",
+					Short:          "Delete farm",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}},
 				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},
