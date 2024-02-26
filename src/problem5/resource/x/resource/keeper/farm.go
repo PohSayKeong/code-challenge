@@ -47,6 +47,7 @@ func (k Keeper) AppendFarm(
 
 	// Set the ID of the appended value
 	farm.Id = count
+	farm.Animal = "Cow"
 
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.FarmKey))
