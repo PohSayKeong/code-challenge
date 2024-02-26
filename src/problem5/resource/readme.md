@@ -1,6 +1,13 @@
 # resource
 **resource** is a blockchain built using Cosmos SDK and Tendermint and created with [Ignite CLI](https://ignite.com/cli).
 
+## Consensus-breaking
+a. A consensus-breaking change refers to any modification to the protocol or ruleset that would lead to a disagreement among validators (nodes) on the validity of blocks and transactions. 
+
+b. My change will break consensus as any transaction to add a new farm will have "Cow" as the animal. The result of handling the the transaction on this node will be different from the result of handling the transaction on another node. This reulst in a disagreement on the validity of blocks and transactions.
+
+Changes can be found at: [PR1](https://github.com/PohSayKeong/code-challenge/pull/1)
+
 ## Get started
 
 ```
@@ -19,7 +26,7 @@ Generate the web frontend for your blockchain with the following command:
 
 - `ignite generate hooks`
 - cd into `/react`
-- `npm install `
+- `npm install`
 - `npm run dev`
 
 ## Useful commands
